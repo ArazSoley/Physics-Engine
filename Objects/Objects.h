@@ -1,19 +1,19 @@
 #pragma once
 
 #include <Eigen/Dense>
+#include "../Globals.h"
 
 using namespace std;
+using Myvector = Eigen::RowVector<double, dimension>;
+
 
 // This file contains classes of available objects
 
 
 // The base object class that all other objects inherit from
 // Rotational motion is not allowed
-template<int dimension>
 class BaseObject
 {
-    using Myvector = Eigen::RowVector<double, dimension>;
-
     public:
         const double m;    // mass
         Myvector pos;        // position
@@ -28,11 +28,8 @@ class BaseObject
 };
 
 
-template<int dimension = 2>
-class Particle: public BaseObject<dimension>
+class Particle: public BaseObject
 {
-    using Myvector = Eigen::RowVector<double, dimension>;
-
     public:
         const double radius = 1.0;
 
@@ -41,6 +38,6 @@ class Particle: public BaseObject<dimension>
                  double m = {1.0},
                  const Myvector &pos = Eigen::RowVectorXd::Zero(dimension),
                  const Myvector &v = Eigen::RowVectorXd::Zero(dimension),
-                 const Myvector &a = Eigen::RowVectorXd::Zero(dimension)) : radius(radius), BaseObject<dimension>{m, pos, v, a} {}
+                 const Myvector &a = Eigen::RowVectorXd::Zero(dimension)) : radius(radius), BaseObject{m, pos, v, a} {}
 };
 

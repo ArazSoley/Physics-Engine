@@ -2,25 +2,30 @@
 
 #include "Objects/Objects.h"
 #include <vector>
-#include <Eigen/Dense>
+#include "Eigen/Dense"
+#include "Globals.h"
 
 using namespace std;
+using Myvector = Eigen::RowVector<double, dimension>;
+
 
 // A world where all objects live
-template<int dimension = 2>
 class World
 {
-    using Myvector = Eigen::RowVector<double, dimension>;
-
-    
-    double gravity = 9.8;
+    vector<Particle> objects;                   // A vecotr where all objects are stored
+    const Myvector gravity;  //gravity
+    const double timestep;
 
     public:
-        vector<Particle<dimension>> objects;
+
+        // Constructor
+        World(const Myvector &gravity = Myvector(0, 9.8),
+              double timestemp = 0.05) : gravity(gravity), timestep(timestep) {}
+              
+        // Adds a single particle to the world
         void AddParticle(double radius = {1.0}, 
                          double m = {1.0},
                          const Myvector &pos = Eigen::RowVectorXd::Zero(dimension),
                          const Myvector &v = Eigen::RowVectorXd::Zero(dimension),
                          const Myvector &a = Eigen::RowVectorXd::Zero(dimension));
-
 };

@@ -1,11 +1,12 @@
 #include"World.h"
 #include <Eigen/Dense>
-#include "Objects/Objects.h"
+#include "Globals.h"
 
 using namespace std;
+using Myvector = Eigen::RowVector<double, dimension>;
 
-template<int dimension>
-void World<dimension>::AddParticle(double radius, double m, const Myvector &pos, const Myvector &v, const Myvector &a)
+
+void World::AddParticle(double radius, double m, const Myvector &pos, const Myvector &v, const Myvector &a)
 {
-    objects.push_back(Particle<dimension>(radius, m, pos, v, a));
+    objects.push_back(Particle(radius, m, pos, v, a));
 }
