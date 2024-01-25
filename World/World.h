@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Objects/Objects.h"
+#include "Objects.h"
 #include <vector>
 #include "Eigen/Dense"
 #include "Globals.h"
@@ -15,12 +15,15 @@ class World
     vector<Particle> objects;                   // A vecotr where all objects are stored
     const Myvector gravity;  //gravity
     const double timestep;
+    const int width, height;
 
     public:
 
         // Constructor
-        World(const Myvector &gravity = Myvector(0, 9.8),
-              double timestemp = 0.05) : gravity(gravity), timestep(timestep) {}
+        World(int width,
+              int height,
+              const Myvector &gravity = Myvector(0, 9.8),
+              double timestep = 0.05) : width(width), height(height), gravity(gravity), timestep(timestep) {}
               
         // Adds a single particle to the world
         void AddParticle(double radius = {1.0}, 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Eigen/Dense>
-#include "../Globals.h"
+#include "Globals.h"
 
 using namespace std;
 using Myvector = Eigen::RowVector<double, dimension>;
