@@ -31,4 +31,6 @@ class World
                          const Myvector &pos = Eigen::RowVectorXd::Zero(dimension),
                          const Myvector &v = Eigen::RowVectorXd::Zero(dimension),
                          const Myvector &a = Eigen::RowVectorXd::Zero(dimension));
+        //Stepping function
+        void Step();
 };
