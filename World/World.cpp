@@ -21,3 +21,16 @@ void World::Step()
         //subsequent collision detector  
     }
 }
+
+void World::Start(int duration, int framePerSecond, double timeStep)
+{
+    // Initializing timestep & fps
+    timestep = timeStep;
+    fps = framePerSecond;
+
+    // If timeStep is not provided, timestep = 1/fps
+    if (timeStep == 1.0 / 30.0)
+        timestep = 1.0 / fps;
+    
+    
+}
