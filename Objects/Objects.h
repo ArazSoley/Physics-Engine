@@ -15,16 +15,16 @@ using Myvector = Eigen::RowVector<double, dimension>;
 class BaseObject
 {
     public:
-        const double m;    // mass
-        Myvector pos;        // position
-        Myvector v;          // velocity
-        Myvector a;          // acceleration
+        const double mass;    // mass
+        Myvector position;        // position
+        Myvector velocity;          // velocity
+        Myvector acceleration;          // acceleration
 
         // Constructor
         BaseObject(double m = {1.0}, 
                    const Myvector &pos = Eigen::RowVectorXd::Zero(dimension),
                    const Myvector &v = Eigen::RowVectorXd::Zero(dimension),
-                   const Myvector &a = Eigen::RowVectorXd::Zero(dimension)) : m(m), pos(pos), v(v), a(a) {}
+                   const Myvector &a = Eigen::RowVectorXd::Zero(dimension)) : mass(m), position(pos), velocity(v), acceleration(a) {}
 };
 
 
