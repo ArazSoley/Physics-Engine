@@ -11,13 +11,13 @@ void World::AddParticle(double radius, double m, const Myvector &pos, const Myve
     objects.push_back(Particle(radius, m, pos, v, a));
 }
 
-
-void World::Step(void)
+void World::Step()
 {
-    // acceleation is constant for now
-    for (auto &vec: objects)
+    for(auto &object : objects)
     {
-        vec.pos += vec.v * timestep;
-        vec.v += vec.a * timestep;
+        //acceleration is constant for this version of engine
+        object.velocity += object.acceleration * timestep;
+        object.position += object.velocity * timestep;
+        //subsequent collision detector  
     }
 }

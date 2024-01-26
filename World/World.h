@@ -17,6 +17,9 @@ class World
     const double timestep;     // Physical timestep
     const int width, height;   // width/height of the screen
 
+    //Stepping function
+    void Step();
+
     public:
 
         // Constructor
