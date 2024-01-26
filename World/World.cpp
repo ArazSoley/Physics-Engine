@@ -10,3 +10,14 @@ void World::AddParticle(double radius, double m, const Myvector &pos, const Myve
 {
     objects.push_back(Particle(radius, m, pos, v, a));
 }
+
+
+void World::Step(void)
+{
+    // acceleation is constant for now
+    for (auto &vec: objects)
+    {
+        vec.pos += vec.v * timestep;
+        vec.v += vec.a * timestep;
+    }
+}

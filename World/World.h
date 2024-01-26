@@ -12,10 +12,10 @@ using Myvector = Eigen::RowVector<double, dimension>;
 // A world where all objects live
 class World
 {
-    vector<Particle> objects;                   // A vecotr where all objects are stored
-    const Myvector gravity;  //gravity
-    const double timestep;
-    const int width, height;
+    vector<Particle> objects;  // A vecotr where all objects are stored
+    const Myvector gravity;    // gravity
+    const double timestep;     // Physical timestep
+    const int width, height;   // width/height of the screen
 
     public:
 
@@ -31,4 +31,10 @@ class World
                          const Myvector &pos = Eigen::RowVectorXd::Zero(dimension),
                          const Myvector &v = Eigen::RowVectorXd::Zero(dimension),
                          const Myvector &a = Eigen::RowVectorXd::Zero(dimension));
+        
+        // Updates all objects for one timestep
+        void Step(void);
+
+        // Starts the simulation process
+        void Start(void);
 };
