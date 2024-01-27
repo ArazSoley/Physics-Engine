@@ -9,10 +9,14 @@ using Myvector = Eigen::RowVector<double, dimension>;
 int main()
 {
 
-    World myWorld(100, 100);
-    myWorld.AddParticle(1.0, 1.0, Myvector(23, 34.5));
+    World myWorld(1280, 720);
 
-    cout << "Henlo" << endl;
+    for (int x = 100, y = 200, i = 5; i > 0; i--)
+        for (int j = 4; j > 0; j--)
+
+            myWorld.AddParticle(20, 50, Myvector(100 + i * (2 * 20 + 10), 200 + j * (2 * 20 + 10)), Myvector(0, 100));
+
+    myWorld.Start(10, 60);
 
     return 0;
 }
