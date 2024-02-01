@@ -2,9 +2,10 @@
 
 #include <Eigen/Dense>
 #include "Globals.h"
+#include "Color.h"
 
 using namespace std;
-using Myvector = Eigen::RowVector<double, dimension>;
+using Myvector = Eigen::RowVector<float, dimension>;
 
 
 // This file contains classes of available objects
@@ -15,29 +16,32 @@ using Myvector = Eigen::RowVector<double, dimension>;
 class BaseObject
 {
     public:
-        const double mass;    // mass
-        Myvector position;        // position
-        Myvector velocity;          // velocity
-        Myvector acceleration;          // acceleration
+        float mass;
+        Myvector position;
+        Myvector velocity;
+        Myvector acceleration;
+        Color color;
 
         // Constructor
-        BaseObject(double m = {1.0}, 
+        BaseObject(float m = {1.0}, 
                    const Myvector &pos = Eigen::RowVectorXd::Zero(dimension),
                    const Myvector &v = Eigen::RowVectorXd::Zero(dimension),
-                   const Myvector &a = Eigen::RowVectorXd::Zero(dimension)) : mass(m), position(pos), velocity(v), acceleration(a) {}
+                   const Myvector &a = Eigen::RowVectorXd::Zero(dimension),
+                   const Color &color = {255, 0, 0}) : mass(m), position(pos), velocity(v), acceleration(a), color(color) {}
 };
 
 
 class Particle: public BaseObject
 {
     public:
-        const double radius = 1.0;
+        float radius = 1.0;
 
         // Constructor
-        Particle(double radius = {1.0}, 
-                 double m = {1.0},
+        Particle(float radius = {1.0}, 
+                 float m = {1.0},
                  const Myvector &pos = Eigen::RowVectorXd::Zero(dimension),
                  const Myvector &v = Eigen::RowVectorXd::Zero(dimension),
-                 const Myvector &a = Eigen::RowVectorXd::Zero(dimension)) : radius(radius), BaseObject{m, pos, v, a} {}
+                 const Myvector &a = Eigen::RowVectorXd::Zero(dimension),
+                 const Color &color = {255, 0, 0}) : radius(radius), BaseObject{m, pos, v, a, color} {}
 };
 

@@ -4,7 +4,7 @@ INCFlAGS= -I"C:\Users\Araz\Documents\C++ Projects\Libraries\eigen-3.4.0" -I".\Wo
 CFLAGS= -std=c++11 -Wconversion $(INCFlAGS)
 CPP_FILES= main.cpp .\World\World.cpp
 
-test: main
+build: main
 
 clean:
 	del "*.o"
