@@ -57,5 +57,5 @@ class World
                          const Color &color = {255, 0, 0});
 
         // Activates the engine for "duration" seconds
-        void Start(int framePerSecond = 30);
+        void Start(int framePerSecond = 60);
 };
