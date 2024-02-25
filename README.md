@@ -13,7 +13,7 @@ The arguments corresppond to radius, mass, position, velocity, acceleration, and
 
 *Note: You can also use `randonNumMax` and `randonNumInRange` functions provided in "main.cpp" to create random particles.
 
-After creating the world and adding the particles, you can start the world (or, the simulation) by using `Start` method of your `World` object. `Start` method takes fps as its argument, and the default value is 60.
+After creating the world and adding particles, you can start the world (or, the simulation) by using `Start` method of your `World` object. `Start` method takes fps as its argument, and the default value is 60.
 
 ### Compiling And Running The Program
 You can compile and run the program by using `make build` and `make run` commands in the terminal respectively.
