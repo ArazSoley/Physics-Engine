@@ -93,11 +93,11 @@ void World::CollisionDetector()
         // Upper and lower
         if ((objects[i].position[1] <= 0 && objects[i].velocity[1] < 0) || 
             ((objects[i].position[1] + 2 * objects[i].radius) >= height && objects[i].velocity[1] > 0))
-            objects[i].velocity[1] = -objects[i].velocity[1];
+            objects[i].velocity[1] = -1 * objects[i].velocity[1];
         // Left and right
         if ((objects[i].position[0] <= 0 && objects[i].velocity[0] < 0) || 
             ((objects[i].position[0] + 2 * objects[i].radius) >= width && objects[i].velocity[0] > 0))
-            objects[i].velocity[0] = -objects[i].velocity[0];
+            objects[i].velocity[0] = -1 * objects[i].velocity[0];
     }
 
     SweepAndPrune();
@@ -105,8 +105,8 @@ void World::CollisionDetector()
 
 void World::SweepAndPrune()
 {
-    //InsertionSort();
-    objects = MergeSort(0, objects.size()-1);
+    InsertionSort();
+    //objects = MergeSort(0, objects.size()-1);
     
     for (int i = 0, size = objects.size(); i < size - 1; i++)
         for (int j = i + 1; j < size; j++)
@@ -126,8 +126,8 @@ void World::ParticleParticleCollisionCheck(Particle &first, Particle &second)
     if ((diffOfCenters.squaredNorm() <= ((first.radius + second.radius) * (first.radius + second.radius))) &&
         (diffOfCenters.dot(diffOfVelocities) < 0))
     {
-        first.velocity = first.velocity - (2 * second.mass / (first.mass + second.mass)) * (diffOfVelocities.dot(diffOfCenters) / diffOfCenters.squaredNorm()) * diffOfCenters;
-        second.velocity = second.velocity + (2 * first.mass / (first.mass + second.mass)) * ((-1 * diffOfVelocities).dot(-1 * diffOfCenters) / diffOfCenters.squaredNorm()) * diffOfCenters;
+        first.velocity = (first.velocity - (2 * second.mass / (first.mass + second.mass)) * (diffOfVelocities.dot(diffOfCenters) / diffOfCenters.squaredNorm()) * diffOfCenters);
+        second.velocity = (second.velocity + (2 * first.mass / (first.mass + second.mass)) * ((-1 * diffOfVelocities).dot(-1 * diffOfCenters) / diffOfCenters.squaredNorm()) * diffOfCenters);
     }
 }
 
@@ -143,90 +143,3 @@ void World::InsertionSort()
         objects[j + 1] = temp;
     }
 }
-
-/*
-vector<Particle> World::MergeSort(int first, int last) const
-{
-    if (first > last)
-        return vector<Particle>();
-    if (first == last)
-        return vector<Particle> {objects[first]};
-
-    vector<Particle> leftVec = MergeSort(first, (first + last) / 2);
-    vector<Particle> rightVec = MergeSort((first + last) / 2 + 1, last);
-
-    vector<Particle> res;
-    int leftIdx = 0, rightIdx = 0, leftSize = leftVec.size(), rightSize = rightVec.size();
-
-    for (; leftIdx < leftSize && rightIdx < rightSize;)
-    {
-        if (leftVec[leftIdx].position[0] < rightVec[rightIdx].position[0])
-        {
-            res.push_back(leftVec[leftIdx]);
-            leftIdx++;
-        }
-        else
-        {
-            res.push_back(rightVec[rightIdx]);
-            rightIdx++;
-        }
-    }
-    for (; leftIdx < leftSize; leftIdx++)
-        res.push_back(leftVec[leftIdx]);
-    for (; rightIdx < rightSize; rightIdx++)
-        res.push_back(rightVec[rightIdx]);
-
-    counter+=res.size();
-    return res;
-} */
-/*
-void World::Start(int duration, int framePerSecond)
-{
-    // Initializing timestep & fps
-    timestep = 1.0 / framePerSecond;
-    fps = framePerSecond;
-    
-
-    // A list for storing all the frames
-    list<sf::Texture> frames;
-    int totalFrameCount = duration * fps;
-
-
-    for (int frameNum = 0; frameNum < totalFrameCount; frameNum++)
-    {
-        // A single frame
-        sf::RenderTexture texture;
-        texture.create(width + 50, height + 50);
-
-        // Move the objects
-        Step();
-        // Detect and resolve collisions
-        CollisionDetector();
-        // Draw objects on the frame
-        DrawOnWindow(texture);  
-
-        //texture.getTexture().copyToImage().saveToFile("C:\\Users\\Araz\\Documents\\C++ Projects\\Physics-Engine\\vid\\" + to_string(frameNum) + ".png");
-
-        frames.push_back(texture.getTexture());
-    }
-
-    // The main window
-    sf::RenderWindow window(sf::VideoMode(width + 50, height + 50), "2D Physics Engine");
-    window.setFramerateLimit(fps);
-
-    // Show the rendered frames
-    for (const auto &texture : frames)
-    {
-        // Display the frame on the window
-        sf::Sprite sprite(texture);
-
-        sf::Event event;
-        while (window.pollEvent(event))
-            if (event.type == sf::Event::Closed)
-                window.close();
-      
-        window.clear();
-        window.draw(sprite);
-        window.display();
-    }
-} */
